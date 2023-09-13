@@ -145,7 +145,7 @@ with col2:
     toss_decision = st.selectbox("What was the Toss Decision?", ["bat", "field"])
 
 # Edit toss_winner so that input is 1 or 0
-toss_winner = [1 if toss_winner==team_1 else 0]
+toss_winner = 1 if toss_winner==team_1 else 0
 
 # Write some code to get the other parameters needed for the model
 df = pd.read_csv("team_weighted_averages.csv")
@@ -167,12 +167,12 @@ team_2_win_ratio = df.loc[df['team_name'] == team_2, 'win_ratio']
 user_input_data = {
         'Team1': [team_1],
         'Team2': [team_2],
-        'Avg_Weighted_Score_diff': [team_1_score-team_2_score],
-        'batting_average_weighted_diff': [team_1_batting_average-team_2_batting_average],
-        'batting_strike_rate_weighted_diff': [team_1_batting_strike-team_2_batting_strike],
-        'bowling_average_diff': [team_1_bowling_average-team_2_bowling_average],
-        'bowling_economy_rate_diff': [team_1_bowling_economy-team_2_bowling_economy],
-        'win_ratio_diff': [team_1_win_ratio-team_2_win_ratio],
+        'Avg_Weighted_Score_diff': [team_1_score.iloc[0]-team_2_score.iloc[0]],
+        'batting_average_weighted_diff': [team_1_batting_average.iloc[0]-team_2_batting_average.iloc[0]],
+        'batting_strike_rate_weighted_diff': [team_1_batting_strike.iloc[0]-team_2_batting_strike.iloc[0]],
+        'bowling_average_diff': [team_1_bowling_average.iloc[0]-team_2_bowling_average.iloc[0]],
+        'bowling_economy_rate_diff': [team_1_bowling_economy.iloc[0]-team_2_bowling_economy.iloc[0]],
+        'win_ratio_diff': [team_1_win_ratio.iloc[0]-team_2_win_ratio.iloc[0]],
         'Venue': [venue],
         'City': [city],
         'TossWinner': [toss_winner],
@@ -187,8 +187,8 @@ user_input_df = pd.DataFrame(user_input_data)
 ipl_prediction_model_url = "https://iplpredictionmodel-wvacvcx6pq-ew.a.run.app/predict" # Running locally
 response = requests.get(ipl_prediction_model_url, params=user_input_data)
 prediction = response.json()
-prediction = [team_1 if prediction==1.0 else team_2]
-prediction = prediction[0]
+prediction = prediction['Prediction']
+prediction = team_1 if prediction==1 else team_2
 
 # Call the make the prediction
 if st.button('Predict Winner'):
@@ -206,5 +206,6 @@ if st.button('Predict Winner'):
     # Display the prediction result with the team logo
     if predicted_team_logo:
         st.image(predicted_team_logo, width=150)
-    prediction = [selected_team_1_display if prediction == team_1 else selected_team_2_display]
-    st.write(prediction[0])
+    prediction = selected_team_1_display if prediction == team_1 else selected_team_2_display
+    st.write(prediction)
+
