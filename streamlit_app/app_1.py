@@ -41,8 +41,16 @@ team_names = ['rajasthan royals', 'royal challengers bangalore',
        'gujarat lions', 'pune warriors', 'deccan chargers',
        'kochi tuskers kerala']
 
+team_names2 = ['royal challengers bangalore', 'rajasthan royals',
+       'sunrisers hyderabad', 'delhi capitals', 'chennai super kings',
+       'gujarat titans', 'lucknow super giants', 'kolkata knight riders',
+       'punjab kings', 'mumbai indians', 'rising pune supergiant',
+       'gujarat lions', 'pune warriors', 'deccan chargers',
+       'kochi tuskers kerala']
+
 # Capitalized version of the team names for display
 team_names_display = [team_name.title() for team_name in team_names]
+team_names_display2 = [team_name.title() for team_name in team_names2]
 
 # Dictionary to map capitalized names to uncapitalized names
 team_names_mapping = {display_name: name for display_name, name in zip(team_names_display, team_names)}
@@ -118,7 +126,7 @@ with col2:
     st.write("VS.")
 
 with col3:
-    selected_team_2_display = st.selectbox('Select Team 2', team_names_display)
+    selected_team_2_display = st.selectbox('Select Team 2', team_names_display2)
     team_2 = team_names_mapping[selected_team_2_display]
     st.image(team_logos[team_2], width=100)
 
