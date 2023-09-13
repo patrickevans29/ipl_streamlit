@@ -130,22 +130,6 @@ with col3:
     team_2 = team_names_mapping[selected_team_2_display]
     st.image(team_logos[team_2], width=100)
 
-st.subheader(f'{team_1} Stats')
-team_1_score = st.number_input(f'Select {team_1} Weighted Score')
-team_1_batting_average = st.number_input(f'Select {team_1} Weighted Batting Average')
-team_1_batting_strike = st.number_input(f'Select {team_1} Weighted Strike Rate')
-team_1_bowling_average = st.number_input(f'Select {team_1} Bowling Average')
-team_1_bowling_economy = st.number_input(f'Select {team_1} Bowling Economy')
-team_1_win_ratio = st.number_input(f'Select {team_1} Win Ratio')
-
-st.subheader(f'{team_2} Stats')
-team_2_score = st.number_input(f'Select {team_2} Weighted Score')
-team_2_batting_average = st.number_input(f'Select {team_2} Weighted Batting Average')
-team_2_batting_strike = st.number_input(f'Select {team_2} Weighted Strike Rate')
-team_2_bowling_average = st.number_input(f'Select {team_2} Bowling Average')
-team_2_bowling_economy = st.number_input(f'Select {team_2} Bowling Economy')
-team_2_win_ratio = st.number_input(f'Select {team_2} Win Ratio')
-
 st.subheader('Select Match Conditions')
 
 # Create two columns to improve readability
@@ -162,6 +146,22 @@ with col2:
 
 # Edit toss_winner so that input is 1 or 0
 toss_winner = [1 if toss_winner==team_1 else 0]
+
+# Write some code to get the other parameters needed for the model
+df = pd.read_csv("team_weighted_averages.csv")
+
+team_1_score = df.loc[df['team_name'] == team_1, 'Avg_Weighted_Score']
+team_2_score = df.loc[df['team_name'] == team_2, 'Avg_Weighted_Score']
+team_1_batting_average = df.loc[df['team_name'] == team_1, 'batting_average']
+team_2_batting_average = df.loc[df['team_name'] == team_2, 'batting_average']
+team_1_batting_strike = df.loc[df['team_name'] == team_1, 'batting_strike_rate']
+team_2_batting_strike = df.loc[df['team_name'] == team_2, 'batting_strike_rate']
+team_1_bowling_average = df.loc[df['team_name'] == team_1, 'bowling_average']
+team_2_bowling_average = df.loc[df['team_name'] == team_2, 'bowling_average']
+team_1_bowling_economy = df.loc[df['team_name'] == team_1, 'bowling_economy_rate']
+team_2_bowling_economy = df.loc[df['team_name'] == team_2, 'bowling_economy_rate']
+team_1_win_ratio = df.loc[df['team_name'] == team_1, 'win_ratio']
+team_2_win_ratio = df.loc[df['team_name'] == team_2, 'win_ratio']
 
 # Create a pandas DataFrame with user input
 user_input_data = {
@@ -209,7 +209,6 @@ if st.button('Predict Winner'):
     prediction = [selected_team_1_display if prediction == team_1 else selected_team_2_display]
     st.write(prediction[0])
 
-
 nothing = """
 ### FOR REFERENCE PURPOSES
 def predict(
@@ -226,3 +225,18 @@ def predict(
     TossWinner: float,
     TossDecision: str):
 """
+"""st.subheader(f'{team_1} Stats')
+team_1_score = st.number_input(f'Select {team_1} Weighted Score')
+team_1_batting_average = st.number_input(f'Select {team_1} Weighted Batting Average')
+team_1_batting_strike = st.number_input(f'Select {team_1} Weighted Strike Rate')
+team_1_bowling_average = st.number_input(f'Select {team_1} Bowling Average')
+team_1_bowling_economy = st.number_input(f'Select {team_1} Bowling Economy')
+team_1_win_ratio = st.number_input(f'Select {team_1} Win Ratio')
+
+st.subheader(f'{team_2} Stats')
+team_2_score = st.number_input(f'Select {team_2} Weighted Score')
+team_2_batting_average = st.number_input(f'Select {team_2} Weighted Batting Average')
+team_2_batting_strike = st.number_input(f'Select {team_2} Weighted Strike Rate')
+team_2_bowling_average = st.number_input(f'Select {team_2} Bowling Average')
+team_2_bowling_economy = st.number_input(f'Select {team_2} Bowling Economy')
+team_2_win_ratio = st.number_input(f'Select {team_2} Win Ratio')"""
