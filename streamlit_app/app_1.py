@@ -208,35 +208,3 @@ if st.button('Predict Winner'):
         st.image(predicted_team_logo, width=150)
     prediction = [selected_team_1_display if prediction == team_1 else selected_team_2_display]
     st.write(prediction[0])
-
-nothing = """
-### FOR REFERENCE PURPOSES
-def predict(
-    Team1: str,
-    Team2: str,
-    Avg_Weighted_Score_diff: float,
-    batting_average_weighted_diff: float,
-    batting_strike_rate_weighted_diff,
-    bowling_average_diff: float,
-    bowling_economy_rate_diff: float,
-    win_ratio_diff: float,
-    Venue: str,
-    City: str,
-    TossWinner: float,
-    TossDecision: str):
-"""
-"""st.subheader(f'{team_1} Stats')
-team_1_score = st.number_input(f'Select {team_1} Weighted Score')
-team_1_batting_average = st.number_input(f'Select {team_1} Weighted Batting Average')
-team_1_batting_strike = st.number_input(f'Select {team_1} Weighted Strike Rate')
-team_1_bowling_average = st.number_input(f'Select {team_1} Bowling Average')
-team_1_bowling_economy = st.number_input(f'Select {team_1} Bowling Economy')
-team_1_win_ratio = st.number_input(f'Select {team_1} Win Ratio')
-
-st.subheader(f'{team_2} Stats')
-team_2_score = st.number_input(f'Select {team_2} Weighted Score')
-team_2_batting_average = st.number_input(f'Select {team_2} Weighted Batting Average')
-team_2_batting_strike = st.number_input(f'Select {team_2} Weighted Strike Rate')
-team_2_bowling_average = st.number_input(f'Select {team_2} Bowling Average')
-team_2_bowling_economy = st.number_input(f'Select {team_2} Bowling Economy')
-team_2_win_ratio = st.number_input(f'Select {team_2} Win Ratio')"""
