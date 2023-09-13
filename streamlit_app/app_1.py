@@ -16,7 +16,7 @@ st.set_page_config(
 )
 
 team_logos = {
-    'gujarat titans': 'streamlit_app/logos/Chennai_Super_Kings_Logo.svg.png',
+    'gujarat titans': 'https://en.wikipedia.org/wiki/Gujarat_Titans#/media/File:Gujarat_Titans_Logo.svg',
     'rajasthan royals': 'https://upload.wikimedia.org/wikipedia/en/6/60/Rajasthan_Royals_Logo.svg',
     'lucknow super giants': 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a9/Lucknow_Super_Giants_IPL_Logo.svg/1200px-Lucknow_Super_Giants_IPL_Logo.svg.png',
     'punjab kings': 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/Punjab_Kings_Logo.svg/1200px-Punjab_Kings_Logo.svg.png',
