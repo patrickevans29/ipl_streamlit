@@ -105,10 +105,10 @@ city_names_mapping = {display_name: name for display_name, name in zip(city_name
 city_names_capitalise = {name: display_name for name, display_name in zip(cities, city_names_display)}
 
 # Create a simple Streamlit web app
-st.title('IPL Match Prediction')
+st.title('IPL Cricket Match Prediction')
 
 # Add user input elements
-st.header('Choose Teams and Statistics')
+st.header('Choose Teams')
 
 # Select columns
 col1, col2, col3 = st.columns(3)
