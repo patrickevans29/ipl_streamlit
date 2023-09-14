@@ -48,6 +48,45 @@ team_names2 = ['royal challengers bangalore', 'rajasthan royals',
        'gujarat lions', 'pune warriors', 'deccan chargers',
        'kochi tuskers kerala']
 
+stadium_to_city = {
+    'narendra modi stadium, ahmedabad': 'ahmedabad',
+    'eden gardens': 'kolkata',
+    'wankhede stadium': 'mumbai',
+    'brabourne stadium': 'mumbai',
+    'dr dy patil sports academy': 'mumbai',
+    'maharashtra cricket association stadium': 'pune',
+    'dubai international cricket stadium': 'dubai',
+    'sharjah cricket stadium': 'sharjah',
+    'sheikh zayed stadium': 'abu dhabi',
+    'arun jaitley stadium': 'dehli',
+    'ma chidambaram stadium': 'chennai',
+    'rajiv gandhi international stadium' : 'hyderabad',
+    'dr. y.s. rajasekhara reddy aca-vdca cricket stadium': 'visakhapatnam',
+    'punjab cricket association is bindra stadium': 'chandigarh',
+    'm.chinnaswamy stadium': 'bangalore',
+    'sawai mansingh stadium': 'jaipur',
+    'holkar cricket stadium': 'indore',
+    'feroz shah kotla': 'dehli',
+    'green park': 'kanpur',
+    'saurashtra cricket association stadium': 'rajkot',
+    'shaheed veer narayan singh international stadium': 'raipur',
+    'jsca international stadium complex': 'ranchi',
+    'sardar patel stadium, motera': 'ahmedabad',
+    'barabati stadium': 'cuttack',
+    'subrata roy sahara stadium': 'pune',
+    'himachal pradesh cricket association stadium': 'dharamsala',
+    'nehru stadium': 'kochi',
+    'vidarbha cricket association stadium, jamtha': 'nagpur',
+    'new wanderers stadium': 'johannesburg',
+    'supersport park': 'centurion',
+    'kingsmead': 'durban',
+    'outsurance oval': 'bloemfontein',
+    "st george's park": 'port elizabeth',
+    'de beers diamond oval': 'kimberley',
+    'buffalo park': 'east london',
+    'newlands': 'cape town'
+}
+
 # Capitalized version of the team names for display
 team_names_display = [team_name.title() for team_name in team_names]
 team_names_display2 = [team_name.title() for team_name in team_names2]
@@ -135,8 +174,6 @@ st.subheader('Select Match Conditions')
 # Create two columns to improve readability
 col1, col2 = st.columns(2)
 with col1:
-    city_display_name = st.selectbox('City', city_names_display)
-    city = city_names_mapping[city_display_name]
     venue_display_name = st.selectbox('Venue', venue_names_display)
     venue = venue_names_mapping[venue_display_name]
 with col2:
@@ -162,6 +199,7 @@ team_1_bowling_economy = df.loc[df['team_name'] == team_1, 'bowling_economy_rate
 team_2_bowling_economy = df.loc[df['team_name'] == team_2, 'bowling_economy_rate']
 team_1_win_ratio = df.loc[df['team_name'] == team_1, 'win_ratio']
 team_2_win_ratio = df.loc[df['team_name'] == team_2, 'win_ratio']
+city = stadium_to_city.get(venue, '')
 
 # Create a pandas DataFrame with user input
 user_input_data = {
@@ -208,4 +246,3 @@ if st.button('Predict Winner'):
         st.image(predicted_team_logo, width=150)
     prediction = selected_team_1_display if prediction == team_1 else selected_team_2_display
     st.write(prediction)
-
