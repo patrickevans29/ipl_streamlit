@@ -185,7 +185,7 @@ with col2:
 toss_winner = 1 if toss_winner==team_1 else 0
 
 # Write some code to get the other parameters needed for the model
-df = pd.read_csv("team_weighted_averages.csv")
+df = pd.read_csv("team_weighted_averages_2023.csv")
 
 team_1_score = df.loc[df['team_name'] == team_1, 'Avg_Weighted_Score']
 team_2_score = df.loc[df['team_name'] == team_2, 'Avg_Weighted_Score']
